@@ -32,13 +32,13 @@ const typeDefs = gql`
 const resolvers = {
   Product: {
     __resolveReference: async ({ slug }: { slug: string }) => {
-      if (slug === 'sunglass') {
+      if (slug === 'sunglass-exists') {
         return {
           type: 'SUNGLASS',
           slug,
           brand: 'RayBan',
         };
-      } else if (slug === 'frame') {
+      } else if (slug === 'frame-exists') {
         return {
           type: 'FRAME',
           slug,
@@ -59,24 +59,6 @@ const resolvers = {
       }
     },
   },
-  SunglassProduct: {
-    __resolveReference: async ({ slug }: { slug: string }) => {
-      return {
-        type: 'SUNGLASS',
-        slug,
-        brand: 'RayBan',
-      };
-    },
-  },
-  FrameProduct: {
-    __resolveReference: async ({ slug }: { slug: string }) => {
-      return {
-        type: 'FRAME',
-        slug,
-        color: 'Green',
-      };
-    },
-  },
 };
 
-export const runA = () => run(typeDefs, resolvers, 4000, 'SubgraphA');
+export const runA = () => run(typeDefs, resolvers, 3001, 'SubgraphA');
